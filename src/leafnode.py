@@ -21,11 +21,16 @@ class HTMLLeafType(Enum):
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props=None):
-        super().__init__(tag, value, props)
+        super().__init__(tag, value, props=None)
 
     def toHTML(self):
         if not self.value:
             raise ValueError("All leaf nodes must include a value.")
         if not self.tag:
             return str(self.value())
-        
+        elif self.tag == HTMLLeafType.LINK:
+            return f'<a href="{self.props}">{self.value}</a>'
+        elif self.tag == HTMLLeafType.IMAGE:
+            return f'<img src="{self.props}" alt="{self.value}" />'
+        else:
+            return f'{self.tag.value[0]}{self.value}{self.tag.value[1]}'
