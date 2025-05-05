@@ -20,8 +20,9 @@ class HTMLLeafType(Enum):
 
 
 class LeafNode(HTMLNode):
-    def __init__(self, tag, value, props=None):
-        super().__init__(tag, value, props=None)
+    def __init__(self, tag, value, props = None):
+        self.props = props
+        super().__init__(tag, value, children = None, props = self.props)
 
     def toHTML(self):
         if not self.value:
@@ -34,3 +35,4 @@ class LeafNode(HTMLNode):
             return f'<img src="{self.props}" alt="{self.value}" />'
         else:
             return f'{self.tag.value[0]}{self.value}{self.tag.value[1]}'
+        

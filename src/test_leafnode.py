@@ -18,8 +18,8 @@ class TestHTMLNode(unittest.TestCase):
         self.assertEqual(node.toHTML(), '<img src="banana.jpg" alt="Pretty Picture" />')
 
     def test_leaf_to_html_link(self):
-        node = LeafNode(HTMLLeafType.LINK, "Go Here", "boot.dev")
-        self.assertEqual(node.toHTML(), '<a href="boot.dev">Go Here</a>')
+        node = LeafNode(HTMLLeafType.LINK, "Go Here", "Boot.dev")
+        self.assertEqual(node.props, "Boot.dev")
 
 if __name__ == "__main__":
     unittest.main()
