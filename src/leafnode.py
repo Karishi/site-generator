@@ -21,8 +21,7 @@ class HTMLLeafType(Enum):
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props = None):
-        self.props = props
-        super().__init__(tag, value, children = None, props = self.props)
+        super().__init__(tag, value, None, props)
 
     def toHTML(self):
         if not self.value:
@@ -36,3 +35,5 @@ class LeafNode(HTMLNode):
         else:
             return f'{self.tag.value[0]}{self.value}{self.tag.value[1]}'
         
+    def __repr__(self):
+        return f"LeafNode({self.tag.value[0]}, {self.value}, {self.props})"
